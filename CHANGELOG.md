@@ -54,7 +54,7 @@ input. They would return true if an input was not `nil`.  They can be manually
 replaced with that same check.
 
 ```ruby
-# v3.5
+# v3.6
 class Example < ActiveInteraction::Base
   string :first_name
 
@@ -102,7 +102,7 @@ class Example < ActiveInteraction::Base
   end
 end
 
-# v3.5
+# v3.6
 Example.run!(x: '010')
 # => 8
 
@@ -144,7 +144,7 @@ class Example < ActiveInteraction::Base
   end
 end
 
-# v3.5
+# v3.6
 Example.run(i: '', b: '').errors.details
 => {:i=>[{:error=>:invalid_type, :type=>"integer"}], :b=>[{:error=>:invalid_type, :type=>"boolean"}]}
 
@@ -152,7 +152,7 @@ Example.run(i: '', b: '').errors.details
 Example.run(i: '', b: '').errors.details
 => {:i=>[{:error=>:missing}]}
 
-# v3.5
+# v3.6
 Example.run(i: 0, b: '').errors.details
 => {:b=>[{:error=>:invalid_type, :type=>"boolean"}]}
 
@@ -192,7 +192,7 @@ class Other < ActiveInteraction::Base
   end
 end
 
-# v3.5
+# v3.6
 Other.run(a: 0, b: 0).errors.details
 => {:a=>[{:error=>:greater_than, :value=>0, :count=>0}]}
 
@@ -256,7 +256,7 @@ class Other < ActiveInteraction::Base
   end
 end
 
-# v3.5
+# v3.6
 Other.run(a: 0, b: 0).errors.details
 => {:a=>[{:error=>:greater_than, :value=>0, :count=>0}]}
 
@@ -302,6 +302,13 @@ in both interactions.
 autolink(:a, :b)
 => { a: link(:a), b: link(:b) }
 ```
+
+# [3.6.0][] (2017-10-20)
+
+## Added
+
+- [#422][] A new `record` filter that accepts an object or calls a finder (e.g. `find`) for the value passed. This is particularly useful for ActiveRecord objects.
+- [#420][] A `converter` option on the `object` filter that allows the value passed to be manually converted into an object of the correct type.
 
 # [3.5.3][] (2017-09-28)
 
@@ -1021,7 +1028,8 @@ Example.run
 
 - Initial release.
 
-  [4.0.0]: https://github.com/orgsync/active_interaction/compare/v3.5.3...v4.0.0
+  [4.0.0]: https://github.com/orgsync/active_interaction/compare/v3.6.0...v4.0.0
+  [3.6.0]: https://github.com/orgsync/active_interaction/compare/v3.5.3...v3.6.0
   [3.5.3]: https://github.com/orgsync/active_interaction/compare/v3.5.2...v3.5.3
   [3.5.2]: https://github.com/orgsync/active_interaction/compare/v3.5.1...v3.5.2
   [3.5.1]: https://github.com/orgsync/active_interaction/compare/v3.5.0...v3.5.1
@@ -1206,4 +1214,6 @@ Example.run
   [#412]: https://github.com/orgsync/active_interaction/pull/412
   [#415]: https://github.com/orgsync/active_interaction/pull/415
   [#417]: https://github.com/orgsync/active_interaction/pull/417
+  [#420]: https://github.com/orgsync/active_interaction/pull/420
+  [#422]: https://github.com/orgsync/active_interaction/pull/422
   [#425]: https://github.com/orgsync/active_interaction/pull/425
